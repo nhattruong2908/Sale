@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+   {
+      "name": "Xdebug Docker (Apache)",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www/html/public": "${workspaceFolder}/backend/public",
+        "/var/www/html/src": "${workspaceFolder}/backend/src"
+      }
+    }
+  ]
+}

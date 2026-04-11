@@ -1,0 +1,22 @@
+ {
+  "name": "sales/api-backend",
+  "description": "Simple PHP API backend using MVC structure",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "firebase/php-jwt": "^6.10",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sales\\": "src/"
+    }
+  },
+  "scripts": {
+    "start": [
+      "php -S localhost:8000 -t public"
+    ]
+  },
+  "minimum-stability": "stable",
+  "license": "MIT"
+}
