@@ -8,11 +8,11 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">S</span>
+                <span className="text-white font-bold text-sm">Y</span>
               </div>
-              <span className="text-white font-bold text-lg">ShopVN</span>
+              <span className="text-white font-bold text-lg">Yến Việt</span>
             </div>
-            <p className="text-sm leading-relaxed">Nền tảng mua sắm trực tuyến uy tín, nhanh chóng và tiện lợi.</p>
+            <p className="text-sm leading-relaxed">Tổ yến sào nguyên chất, nguồn gốc rõ ràng từ Khánh Hòa, Nha Trang.</p>
           </div>
 
           <div>
@@ -27,7 +27,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-medium mb-3">Hỗ trợ</h4>
             <ul className="space-y-2 text-sm">
-              <li>Email: support@shopvn.vn</li>
+              <li>Email: support@yenviet.vn</li>
               <li>Hotline: 1800 1234</li>
               <li>Thứ 2 - Thứ 7: 8:00 - 22:00</li>
             </ul>
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm">
-          © {new Date().getFullYear()} ShopVN. All rights reserved.
+          © {new Date().getFullYear()} Yến Việt. All rights reserved.
         </div>
       </div>
     </footer>

@@ -1,14 +1,15 @@
-# Use official PHP image with FPM
-FROM php:8.4-fpm-alpine
+# Lightweight PHP CLI image to serve Adminer
+FROM php:8.2-cli-alpine
 
-# Install required PHP extensions for Adminer and Apache
-RUN apk --no-cache add postgresql-dev
-RUN docker-php-ext-install pdo pdo_pgsql
+# Install PDO MySQL extension so Adminer can connect to the mysql service
+RUN docker-php-ext-install pdo pdo_mysql
 
-# Set the working directory
-WORKDIR /usr/local/apache2/htdocs/adminer
+WORKDIR /var/www/html
 
-RUN mkdir -p /usr/local/apache2/htdocs/adminer
+# Download the MySQL-only Adminer build so the login page never offers
+# a PostgreSQL/other driver we haven't installed the PHP extension for
+ADD https://www.adminer.org/latest-mysql-en.php /var/www/html/index.php
 
-# Download Adminer PHP file
-RUN curl -L -o /usr/local/apache2/htdocs/adminer/index.php https://www.adminer.org/latest.php
+EXPOSE 8080
+
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "."]

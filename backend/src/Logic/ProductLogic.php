@@ -1,5 +1,5 @@
 <?php
-class ProductModel
+class ProductLogic
 {
     private $conn;
     public function __construct($db)
@@ -12,12 +12,12 @@ class ProductModel
             $page  = max(1, (int)($queryParam['page'] ?? 1));
             $limit = max(1, (int)($queryParam['limit'] ?? 10));
             $offset = ($page - 1) * $limit;
-            $name = $queryParam['name'];
+            $name = $queryParam['name'] ?? null;
             $where  = " WHERE del_flag = 0 ";
             $params = [];
             if (!empty($name)) {
                 $where .= " and name like :name";
-                $params[':name'] = '%' . $queryParam['name'] . '%';
+                $params[':name'] = '%' . $name . '%';
             }
             $sql = "SELECT * FROM products $where";
             $sql .= " order by id desc LIMIT :limit OFFSET :offset";
@@ -57,16 +57,16 @@ class ProductModel
     {
         try {
             $this->conn->beginTransaction();
-            $sql = "INSERT INTO products (name, price, create_date,update_date,del_flag)
-            VALUES (:name, :price, :create_date,:update_date,:del_flag)";
+            $sql = "INSERT INTO products (name, price, created_at,updated_at,del_flag)
+            VALUES (:name, :price, :created_at,:updated_at,:del_flag)";
             $createDate = date('Y-m-d H:i:s');
 
             $stmt = $this->conn->prepare($sql);
             $result = $stmt->execute([
                 ':name' => $name,
                 ':price' => $price,
-                ':create_date' => $createDate,
-                ':update_date' => null,
+                ':created_at' => $createDate,
+                ':updated_at' => null,
                 ':del_flag' => 0
             ]);
             $this->conn->commit();
@@ -81,14 +81,14 @@ class ProductModel
     {
         try {
             $this->conn->beginTransaction();
-            $sql = "UPDATE products SET name = :name, price = :price, update_date = :update_date WHERE id = :id";
+            $sql = "UPDATE products SET name = :name, price = :price, updated_at = :updated_at WHERE id = :id";
             $updateDate = date('Y-m-d H:i:s');
             $stmt = $this->conn->prepare($sql);
             $result = $stmt->execute([
                 ':id' => $id,
                 ':name' => $name,
                 ':price' => $price,
-                ':update_date' => $updateDate,
+                ':updated_at' => $updateDate,
 
             ]);
             $this->conn->commit();
@@ -102,12 +102,12 @@ class ProductModel
     {
         try {
             $this->conn->beginTransaction();
-            $sql = "UPDATE products SET del_flag = 1, update_date = :update_date WHERE id = :id";
+            $sql = "UPDATE products SET del_flag = 1, updated_at = :updated_at WHERE id = :id";
             $updateDate = date('Y-m-d H:i:s');
             $stmt = $this->conn->prepare($sql);
             $result = $stmt->execute([
                 ':id' => $id,
-                ':update_date' => $updateDate,
+                ':updated_at' => $updateDate,
             ]);
             $this->conn->commit();
             return $result;

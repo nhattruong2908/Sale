@@ -11,28 +11,64 @@ class Router {
         ];
     }
 
-    public function dispatch(): void
-    {
-        $method = $_SERVER['REQUEST_METHOD'];
-        $uri    = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+   public function dispatch(): void
+{
+    $method = $_SERVER['REQUEST_METHOD'];
 
-        foreach ($this->routes as $route) {
+    // Lấy URL path
+    $uri = trim(
+        parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH),
+        '/'
+    );
 
-            if ($method !== $route['method']) {
-                continue;
-            }
+    // Bỏ prefix "api/"
+    if (str_starts_with($uri, 'api/')) {
+        $uri = substr($uri, 4);
+    }
 
-            $pattern = preg_replace('#\{(\w+)\}#', '(?P<$1>[^/]+)', $route['path']);
-            $pattern = "#^" . trim($pattern, '/') . "$#";
+    foreach ($this->routes as $route) {
 
-            if (preg_match($pattern, $uri, $matches)) {
-                $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY);
-                call_user_func_array($route['handler'], array_values($params));
-                return;
-            }
+        // Check HTTP method
+        if ($method !== $route['method']) {
+            continue;
         }
 
-        http_response_code(404);
-        echo json_encode(["error" => "Route not found"]);
+        // Chuyển {id} thành regex
+        $pattern = preg_replace(
+            '#\{(\w+)\}#',
+            '(?P<$1>[^/]+)',
+            $route['path']
+        );
+
+        $pattern = '#^' . trim($pattern, '/') . '$#';
+
+        // Match route
+        if (preg_match($pattern, $uri, $matches)) {
+
+            // Lấy parameter
+            $params = array_filter(
+                $matches,
+                'is_string',
+                ARRAY_FILTER_USE_KEY
+            );
+
+            // Gọi Controller
+            call_user_func_array(
+                $route['handler'],
+                array_values($params)
+            );
+
+            return;
+        }
     }
+
+    // Không tìm thấy route
+    http_response_code(404);
+
+    echo json_encode([
+        'error' => 'Route not found',
+        'method' => $method,
+        'uri' => $uri
+    ]);
+}
 }

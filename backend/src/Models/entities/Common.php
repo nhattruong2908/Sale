@@ -5,14 +5,14 @@ namespace App\Models\Entities;
 class Common
 {
     private int $id;
-    private \DateTime $create_date;
-    private \DateTime $update_date;
+    private \DateTime $created_at;
+    private \DateTime $updated_at;
     private bool $del_flag;
 
     public function __construct()
     {
-        $this->create_date = new \DateTime();
-        $this->update_date = new \DateTime();
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
         $this->del_flag = false;
     }
 
@@ -29,23 +29,23 @@ class Common
 
     public function getCreateDate(): \DateTime
     {
-        return $this->create_date;
+        return $this->created_at;
     }
 
-    public function setCreateDate(\DateTime $create_date): self
+    public function setCreateDate(\DateTime $created_at): self
     {
-        $this->create_date = $create_date;
+        $this->created_at = $created_at;
         return $this;
     }
 
     public function getUpdateDate(): \DateTime
     {
-        return $this->update_date;
+        return $this->updated_at;
     }
 
-    public function setUpdateDate(\DateTime $update_date): self
+    public function setUpdateDate(\DateTime $updated_at): self
     {
-        $this->update_date = $update_date;
+        $this->updated_at = $updated_at;
         return $this;
     }
 

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, X } from 'lucide-react';
 
 const INIT_PRODUCTS = [
-  { id: 1, name: 'Áo thun nam basic', category: 'Thời trang', price: 199000, stock: 150, status: 'active' },
-  { id: 2, name: 'Giày sneaker trắng', category: 'Giày dép', price: 850000, stock: 42, status: 'active' },
-  { id: 3, name: 'Tai nghe bluetooth', category: 'Điện tử', price: 490000, stock: 0, status: 'out_of_stock' },
-  { id: 4, name: 'Balo laptop 15"', category: 'Phụ kiện', price: 320000, stock: 78, status: 'active' },
-  { id: 5, name: 'Đồng hồ thông minh', category: 'Điện tử', price: 1200000, stock: 25, status: 'active' },
+  { id: 1, name: 'Yến sào tinh chế cao cấp 100g', category: 'Yến tinh chế', price: 2850000, stock: 40, status: 'active' },
+  { id: 2, name: 'Yến chưng đường phèn hũ 70ml (lốc 6 hũ)', category: 'Yến chưng sẵn', price: 480000, stock: 120, status: 'active' },
+  { id: 3, name: 'Yến thô nguyên tổ đảo thiên nhiên 50g', category: 'Yến thô', price: 1650000, stock: 0, status: 'out_of_stock' },
+  { id: 4, name: 'Set quà tặng yến sào hộp gỗ', category: 'Quà tặng yến', price: 3200000, stock: 25, status: 'active' },
+  { id: 5, name: 'Yến sợi tinh chế 50g', category: 'Yến sợi', price: 1450000, stock: 60, status: 'active' },
 ];
 
 function formatPrice(price) {

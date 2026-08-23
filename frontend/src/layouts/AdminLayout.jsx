@@ -30,9 +30,9 @@ export default function AdminLayout() {
         {/* Logo */}
         <div className="h-16 flex items-center px-4 border-b border-gray-800">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
-            <span className="text-white font-bold text-sm">S</span>
+            <span className="text-white font-bold text-sm">Y</span>
           </div>
-          {sidebarOpen && <span className="ml-2 text-white font-bold text-lg">ShopVN</span>}
+          {sidebarOpen && <span className="ml-2 text-white font-bold text-lg">Yến Việt</span>}
         </div>
 
         {/* Nav */}

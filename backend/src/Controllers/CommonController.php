@@ -6,7 +6,7 @@ class CommonController
     {
         $rawBody = file_get_contents("php://input");
         $data = json_decode($rawBody, true);
-        return $data;
+        return $data ?? [];
     }
     public function responseValue(array $result = [], ?string $error = null)
     {
@@ -22,5 +22,20 @@ class CommonController
             ];
         }
         return  $format;
+    }
+    // Renders the standard {success, data|message} shape returned by every Service method
+    public function respond(array $result): void
+    {
+        if (empty($result['success'])) {
+            echo json_encode(["status" => "false", "error" => $result['error'] ?? 'Unknown error']);
+            return;
+        }
+
+        if (array_key_exists('message', $result)) {
+            echo json_encode(["status" => "success", "message" => $result['message']]);
+            return;
+        }
+
+        echo json_encode(["status" => "success", "data" => $result['data'] ?? []]);
     }
 }

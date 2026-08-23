@@ -22,9 +22,9 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
+              <span className="text-white font-bold text-sm">Y</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">ShopVN</span>
+            <span className="text-xl font-bold text-gray-900">Yến Việt</span>
           </Link>
 
           {/* Nav links - desktop */}

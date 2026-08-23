@@ -19,7 +19,7 @@ export default function Register() {
     }
     try {
       await register({ name: form.name, email: form.email, password: form.password });
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       setError(err.message || 'Đăng ký thất bại. Vui lòng thử lại.');
     }
@@ -31,12 +31,12 @@ export default function Register() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-4">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold">S</span>
+              <span className="text-white font-bold">Y</span>
             </div>
-            <span className="text-2xl font-bold text-gray-900">ShopVN</span>
+            <span className="text-2xl font-bold text-gray-900">Yến Việt</span>
           </Link>
           <h1 className="text-xl font-bold text-gray-900">Tạo tài khoản</h1>
-          <p className="text-sm text-gray-500 mt-1">Tham gia ShopVN ngay hôm nay!</p>
+          <p className="text-sm text-gray-500 mt-1">Tham gia Yến Việt ngay hôm nay!</p>
         </div>
 
         <div className="card p-6">

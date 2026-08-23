@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Truck, RotateCcw, Headphones } from 'lucide-react';
 
 const FEATURED_PRODUCTS = [
-  { id: 1, name: 'Áo thun nam basic', price: 199000, image: 'https://placehold.co/300x300/e0f2fe/0284c7?text=Sản+phẩm', category: 'Thời trang' },
-  { id: 2, name: 'Giày sneaker trắng', price: 850000, image: 'https://placehold.co/300x300/fef9c3/ca8a04?text=Sản+phẩm', category: 'Giày dép' },
-  { id: 3, name: 'Tai nghe bluetooth', price: 490000, image: 'https://placehold.co/300x300/ede9fe/7c3aed?text=Sản+phẩm', category: 'Điện tử' },
-  { id: 4, name: 'Balo laptop 15"', price: 320000, image: 'https://placehold.co/300x300/dcfce7/16a34a?text=Sản+phẩm', category: 'Phụ kiện' },
+  { id: 1, name: 'Yến sào tinh chế cao cấp 100g', price: 2850000, image: 'https://placehold.co/300x300/fef9c3/ca8a04?text=Y%E1%BA%BFn+t%E1%BB%95', category: 'Yến tinh chế' },
+  { id: 2, name: 'Yến chưng đường phèn hũ 70ml (lốc 6 hũ)', price: 480000, image: 'https://placehold.co/300x300/fef3c7/b45309?text=Y%E1%BA%BFn+ch%C6%B0ng', category: 'Yến chưng sẵn' },
+  { id: 3, name: 'Yến thô nguyên tổ đảo thiên nhiên 50g', price: 1650000, image: 'https://placehold.co/300x300/f0fdf4/15803d?text=Y%E1%BA%BFn+th%C3%B4', category: 'Yến thô' },
+  { id: 4, name: 'Set quà tặng yến sào cao cấp', price: 3200000, image: 'https://placehold.co/300x300/fdf2f8/be185d?text=Qu%C3%A0+t%E1%BA%B7ng', category: 'Quà tặng yến' },
 ];
 
 const CATEGORIES = [
-  { name: 'Thời trang', icon: '👕', color: 'bg-blue-50 text-blue-600' },
-  { name: 'Điện tử', icon: '💻', color: 'bg-purple-50 text-purple-600' },
-  { name: 'Giày dép', icon: '👟', color: 'bg-yellow-50 text-yellow-600' },
-  { name: 'Phụ kiện', icon: '🎒', color: 'bg-green-50 text-green-600' },
-  { name: 'Sách', icon: '📚', color: 'bg-red-50 text-red-600' },
-  { name: 'Đồ gia dụng', icon: '🏠', color: 'bg-orange-50 text-orange-600' },
+  { name: 'Yến thô', icon: '🐦', color: 'bg-blue-50 text-blue-600' },
+  { name: 'Yến tinh chế', icon: '🧺', color: 'bg-purple-50 text-purple-600' },
+  { name: 'Yến chưng sẵn', icon: '🥣', color: 'bg-yellow-50 text-yellow-600' },
+  { name: 'Yến sợi', icon: '🧵', color: 'bg-green-50 text-green-600' },
+  { name: 'Quà tặng yến', icon: '🎁', color: 'bg-red-50 text-red-600' },
+  { name: 'Yến cho bé & mẹ bầu', icon: '👶', color: 'bg-orange-50 text-orange-600' },
 ];
 
 function formatPrice(price) {
@@ -29,10 +29,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-              Mua sắm thông minh<br />Giá tốt mỗi ngày
+              Tổ yến nguyên chất<br />Tinh hoa từ thiên nhiên
             </h1>
             <p className="text-blue-100 text-lg mb-8">
-              Hàng nghìn sản phẩm chất lượng, giao hàng nhanh toàn quốc.
+              Yến sào cao cấp, nguồn gốc Khánh Hòa - Nha Trang, kiểm định chất lượng, giao hàng toàn quốc.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <Link to="/products" className="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors flex items-center gap-2">
@@ -45,8 +45,8 @@ export default function Home() {
           </div>
           <div className="flex-1 flex justify-center">
             <img
-              src="https://placehold.co/460x320/1d4ed8/ffffff?text=ShopVN"
-              alt="hero"
+              src="https://placehold.co/460x320/1d4ed8/ffffff?text=Y%E1%BA%BFn+Vi%E1%BB%87t"
+              alt="Yến Việt"
               className="rounded-2xl shadow-2xl w-full max-w-sm md:max-w-none"
             />
           </div>
@@ -57,9 +57,9 @@ export default function Home() {
       <section className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
-            { value: '10K+', label: 'Sản phẩm' },
+            { value: '10+', label: 'Năm kinh nghiệm' },
             { value: '50K+', label: 'Khách hàng' },
-            { value: '99%', label: 'Hài lòng' },
+            { value: '100%', label: 'Tự nhiên' },
             { value: '24/7', label: 'Hỗ trợ' },
           ].map((s) => (
             <div key={s.label}>
@@ -115,10 +115,10 @@ export default function Home() {
       <section className="bg-white border-t border-gray-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { icon: Truck, title: 'Giao hàng miễn phí', desc: 'Cho đơn hàng từ 300K' },
-            { icon: RotateCcw, title: 'Đổi trả 30 ngày', desc: 'Không câu hỏi' },
-            { icon: ShieldCheck, title: 'Bảo mật thanh toán', desc: '100% an toàn' },
-            { icon: Headphones, title: 'Hỗ trợ 24/7', desc: 'Luôn sẵn sàng giúp đỡ' },
+            { icon: Truck, title: 'Giao hàng toàn quốc', desc: 'Miễn phí cho đơn từ 1.000.000đ' },
+            { icon: ShieldCheck, title: '100% tự nhiên', desc: 'Không chất bảo quản, không tẩy trắng' },
+            { icon: RotateCcw, title: 'Đổi trả trong 7 ngày', desc: 'Nếu sản phẩm lỗi' },
+            { icon: Headphones, title: 'Tư vấn tận tâm', desc: 'Hỗ trợ 24/7' },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} className="flex flex-col items-center text-center gap-2">
               <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">

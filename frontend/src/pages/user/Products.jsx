@@ -3,16 +3,27 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { productAPI } from '../../services/api';
 
-const MOCK_PRODUCTS = Array.from({ length: 12 }, (_, i) => ({
+const MOCK_PRODUCTS = [
+  { name: 'Yến sào tinh chế cao cấp 100g', price: 2850000, category: 'Yến tinh chế' },
+  { name: 'Yến chưng đường phèn hũ 70ml (lốc 6 hũ)', price: 480000, category: 'Yến chưng sẵn' },
+  { name: 'Yến thô nguyên tổ đảo thiên nhiên 50g', price: 1650000, category: 'Yến thô' },
+  { name: 'Yến sợi tinh chế 50g', price: 1450000, category: 'Yến sợi' },
+  { name: 'Set quà tặng yến sào hộp gỗ', price: 3200000, category: 'Quà tặng yến' },
+  { name: 'Yến chưng hạt chia hũ 70ml (lốc 6 hũ)', price: 520000, category: 'Yến chưng sẵn' },
+  { name: 'Yến vụn tinh chế 100g', price: 980000, category: 'Yến tinh chế' },
+  { name: 'Yến chưng táo đỏ hạt sen (lốc 6 hũ)', price: 550000, category: 'Yến chưng sẵn' },
+  { name: 'Yến rút lông loại đảo 50g', price: 1750000, category: 'Yến thô' },
+  { name: 'Yến tinh chế 50g cho bé', price: 890000, category: 'Yến cho bé & mẹ bầu' },
+  { name: 'Combo yến chưng dinh dưỡng cho mẹ bầu', price: 1250000, category: 'Yến cho bé & mẹ bầu' },
+  { name: 'Hộp quà biếu yến sào cao cấp 200g', price: 4500000, category: 'Quà tặng yến' },
+].map((p, i) => ({
   id: i + 1,
-  name: `Sản phẩm mẫu ${i + 1}`,
-  price: Math.floor(Math.random() * 900000) + 100000,
-  image: `https://placehold.co/300x300/e0f2fe/0284c7?text=SP${i + 1}`,
-  category: ['Thời trang', 'Điện tử', 'Giày dép', 'Phụ kiện'][i % 4],
+  ...p,
+  image: `https://placehold.co/300x300/fef9c3/ca8a04?text=Y%E1%BA%BFn+s%C3%A0o`,
   rating: (Math.random() * 1.5 + 3.5).toFixed(1),
 }));
 
-const CATEGORIES = ['Tất cả', 'Thời trang', 'Điện tử', 'Giày dép', 'Phụ kiện', 'Sách'];
+const CATEGORIES = ['Tất cả', 'Yến thô', 'Yến tinh chế', 'Yến chưng sẵn', 'Yến sợi', 'Quà tặng yến', 'Yến cho bé & mẹ bầu'];
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Mới nhất' },
   { value: 'price_asc', label: 'Giá thấp đến cao' },

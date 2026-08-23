@@ -6,18 +6,25 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem('user');
-    return saved ? JSON.parse(saved) : null;
+    if (!saved) return null;
+    try {
+      return JSON.parse(saved);
+    } catch {
+      localStorage.removeItem('user');
+      return null;
+    }
   });
   const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const data = await authAPI.login({ email, password });
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
-      return data.user;
+      const res = await authAPI.login({ email, password });
+      const { token, user } = res.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      setUser(user);
+      return user;
     } finally {
       setLoading(false);
     }
@@ -26,11 +33,7 @@ export function AuthProvider({ children }) {
   const register = async (formData) => {
     setLoading(true);
     try {
-      const data = await authAPI.register(formData);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      setUser(data.user);
-      return data.user;
+      await authAPI.register(formData);
     } finally {
       setLoading(false);
     }

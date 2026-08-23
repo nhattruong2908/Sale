@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Plus, Edit2, Trash2, X, Tag } from 'lucide-react';
 
 const INIT_CATS = [
-  { id: 1, name: 'Thời trang', icon: '👕', productCount: 145 },
-  { id: 2, name: 'Điện tử', icon: '💻', productCount: 87 },
-  { id: 3, name: 'Giày dép', icon: '👟', productCount: 64 },
-  { id: 4, name: 'Phụ kiện', icon: '🎒', productCount: 32 },
-  { id: 5, name: 'Sách', icon: '📚', productCount: 12 },
-  { id: 6, name: 'Đồ gia dụng', icon: '🏠', productCount: 58 },
+  { id: 1, name: 'Yến thô', icon: '🐦', productCount: 14 },
+  { id: 2, name: 'Yến tinh chế', icon: '🧺', productCount: 22 },
+  { id: 3, name: 'Yến chưng sẵn', icon: '🥣', productCount: 18 },
+  { id: 4, name: 'Yến sợi', icon: '🧵', productCount: 9 },
+  { id: 5, name: 'Quà tặng yến', icon: '🎁', productCount: 11 },
+  { id: 6, name: 'Yến cho bé & mẹ bầu', icon: '👶', productCount: 7 },
 ];
 
 const EMPTY_FORM = { name: '', icon: '' };
@@ -78,11 +78,7 @@ export default function AdminCategories() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Tên danh mục *</label>
                 <input className="input" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="VD: Thời trang" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Icon (emoji)</label>
-                <input className="input" value={form.icon} onChange={(e) => setForm({ ...form, icon: e.target.value })} placeholder="VD: 👕" />
-              </div>
+              </div>  
               <div className="flex gap-2 pt-1">
                 <button type="submit" className="btn-primary flex-1">Lưu</button>
                 <button type="button" onClick={() => setShowModal(false)} className="btn-secondary flex-1">Hủy</button>

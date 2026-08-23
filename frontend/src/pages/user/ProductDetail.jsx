@@ -5,21 +5,20 @@ import { useCart } from '../../context/CartContext';
 
 const MOCK_PRODUCT = {
   id: 1,
-  name: 'Áo thun nam basic oversize',
-  price: 199000,
-  originalPrice: 280000,
+  name: 'Yến sào tinh chế cao cấp Khánh Hòa',
+  price: 2850000,
+  originalPrice: 3200000,
   images: [
-    'https://placehold.co/500x500/e0f2fe/0284c7?text=Ảnh+1',
-    'https://placehold.co/500x500/dbeafe/1d4ed8?text=Ảnh+2',
-    'https://placehold.co/500x500/bfdbfe/1e40af?text=Ảnh+3',
+    'https://placehold.co/500x500/fef9c3/ca8a04?text=Y%E1%BA%BFn+s%C3%A0o+1',
+    'https://placehold.co/500x500/fef3c7/b45309?text=Y%E1%BA%BFn+s%C3%A0o+2',
+    'https://placehold.co/500x500/fde68a/92400e?text=Y%E1%BA%BFn+s%C3%A0o+3',
   ],
-  category: 'Thời trang',
-  rating: 4.5,
-  reviewCount: 128,
-  stock: 50,
-  description: 'Áo thun nam basic với chất liệu cotton 100%, thoáng mát, phù hợp mặc hàng ngày. Thiết kế oversize hiện đại, dễ phối đồ.',
-  sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-  colors: ['Trắng', 'Đen', 'Xám', 'Navy'],
+  category: 'Yến tinh chế',
+  rating: 4.8,
+  reviewCount: 96,
+  stock: 35,
+  description: 'Yến sào tinh chế 100% tự nhiên, khai thác từ đảo yến Khánh Hòa, được sơ chế thủ công, rút lông kỹ càng, giữ trọn dưỡng chất. Không chất bảo quản, không tẩy trắng, phù hợp bồi bổ sức khỏe cho cả gia đình.',
+  weights: ['50g', '100g', '200g', '500g'],
 };
 
 function formatPrice(price) {
@@ -34,8 +33,7 @@ export default function ProductDetail() {
   const product = MOCK_PRODUCT; // In real app: fetch by id
 
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedSize, setSelectedSize] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedWeight, setSelectedWeight] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -92,41 +90,21 @@ export default function ProductDetail() {
             <span className="badge bg-red-100 text-red-600">-{discount}%</span>
           </div>
 
-          {/* Size */}
-          <div className="mb-4">
-            <p className="text-sm font-medium text-gray-700 mb-2">Kích thước</p>
-            <div className="flex flex-wrap gap-2">
-              {product.sizes.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSelectedSize(s)}
-                  className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors ${
-                    selectedSize === s
-                      ? 'border-blue-600 bg-blue-50 text-blue-600'
-                      : 'border-gray-300 text-gray-600 hover:border-gray-400'
-                  }`}
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Color */}
+          {/* Weight */}
           <div className="mb-6">
-            <p className="text-sm font-medium text-gray-700 mb-2">Màu sắc</p>
+            <p className="text-sm font-medium text-gray-700 mb-2">Trọng lượng</p>
             <div className="flex flex-wrap gap-2">
-              {product.colors.map((c) => (
+              {product.weights.map((w) => (
                 <button
-                  key={c}
-                  onClick={() => setSelectedColor(c)}
+                  key={w}
+                  onClick={() => setSelectedWeight(w)}
                   className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition-colors ${
-                    selectedColor === c
+                    selectedWeight === w
                       ? 'border-blue-600 bg-blue-50 text-blue-600'
                       : 'border-gray-300 text-gray-600 hover:border-gray-400'
                   }`}
                 >
-                  {c}
+                  {w}
                 </button>
               ))}
             </div>

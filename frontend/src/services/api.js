@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 function getToken() {
   return localStorage.getItem('token');
@@ -26,7 +26,7 @@ async function request(path, options = {}) {
   }
 
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || 'Có lỗi xảy ra');
+  if (!res.ok || data.status === 'false') throw new Error(data.error || data.message || 'Có lỗi xảy ra');
   return data;
 }
 
@@ -49,10 +49,9 @@ const del = (path) =>
 
 // Auth
 export const authAPI = {
-  login: (data) => post('/auth/login', data),
-  register: (data) => post('/auth/register', data),
-  logout: () => post('/auth/logout'),
-  me: () => get('/auth/me'),
+  login: (data) => post('/User/login', data),
+  register: (data) => post('/User/addUser', data),
+  logout: () => post('/User/logout'),
 };
 
 // Products
@@ -83,10 +82,10 @@ export const orderAPI = {
 
 // Users (admin)
 export const userAPI = {
-  getAll: (params) => get('/users', params),
-  getById: (id) => get(`/users/${id}`),
-  update: (id, data) => put(`/users/${id}`, data),
-  delete: (id) => del(`/users/${id}`),
+  getAll: (params) => get('/User/getList', params),
+  getById: (id) => get(`/User/getDetail/${id}`),
+  update: (id, data) => post(`/User/updateUser/${id}`, data),
+  delete: (id) => post(`/User/deleteUser/${id}`),
 };
 
 // Dashboard stats (admin)

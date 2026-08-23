@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Search, Eye, X } from 'lucide-react';
 
 const INIT_ORDERS = [
-  { id: 'ORD001', customer: 'Nguyễn Văn A', phone: '0912345678', total: 548000, status: 'delivered', date: '2024-11-10', items: [{ name: 'Áo thun', qty: 2, price: 199000 }, { name: 'Balo', qty: 1, price: 150000 }] },
-  { id: 'ORD002', customer: 'Trần Thị B', phone: '0987654321', total: 199000, status: 'shipping', date: '2024-11-09', items: [{ name: 'Giày sneaker', qty: 1, price: 199000 }] },
-  { id: 'ORD003', customer: 'Lê Văn C', phone: '0901234567', total: 1020000, status: 'pending', date: '2024-11-08', items: [{ name: 'Tai nghe', qty: 2, price: 490000 }, { name: 'Cáp USB', qty: 1, price: 40000 }] },
-  { id: 'ORD004', customer: 'Phạm Thị D', phone: '0967890123', total: 320000, status: 'confirmed', date: '2024-11-07', items: [{ name: 'Balo laptop', qty: 1, price: 320000 }] },
-  { id: 'ORD005', customer: 'Hoàng Văn E', phone: '0934567890', total: 450000, status: 'cancelled', date: '2024-11-06', items: [{ name: 'Đồng hồ', qty: 1, price: 450000 }] },
+  { id: 'ORD001', customer: 'Nguyễn Văn A', phone: '0912345678', total: 2850000, status: 'delivered', date: '2024-11-10', items: [{ name: 'Yến tinh chế cao cấp 100g', qty: 1, price: 2850000 }] },
+  { id: 'ORD002', customer: 'Trần Thị B', phone: '0987654321', total: 480000, status: 'shipping', date: '2024-11-09', items: [{ name: 'Yến chưng đường phèn (lốc 6 hũ)', qty: 1, price: 480000 }] },
+  { id: 'ORD003', customer: 'Lê Văn C', phone: '0901234567', total: 1730000, status: 'pending', date: '2024-11-08', items: [{ name: 'Yến thô nguyên tổ 50g', qty: 1, price: 1650000 }, { name: 'Yến chưng táo đỏ hạt sen', qty: 1, price: 80000 }] },
+  { id: 'ORD004', customer: 'Phạm Thị D', phone: '0967890123', total: 3200000, status: 'confirmed', date: '2024-11-07', items: [{ name: 'Set quà tặng yến sào hộp gỗ', qty: 1, price: 3200000 }] },
+  { id: 'ORD005', customer: 'Hoàng Văn E', phone: '0934567890', total: 1450000, status: 'cancelled', date: '2024-11-06', items: [{ name: 'Yến sợi tinh chế 50g', qty: 1, price: 1450000 }] },
 ];
 
 const STATUS_CONFIG = {

@@ -1,5 +1,5 @@
 <?php
-class OrdersModel
+class OrderLogic
 {
     private $conn;
     public function __construct($db)
@@ -11,7 +11,7 @@ class OrdersModel
         try {
             $this->conn->beginTransaction();
             $code = $this->genOrderCode();
-            $sql = "INSERT INTO orders (user_id, code,create_date) VALUES (:user_id, :code, NOW())";
+            $sql = "INSERT INTO orders (user_id, code,created_at) VALUES (:user_id, :code, NOW())";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':user_id' => $userId,
@@ -24,17 +24,18 @@ class OrdersModel
             return $ex->getMessage();
         }
     }
-    public function getListOrder(array $queryParam = []) {
-         try {
+    public function getListOrder(array $queryParam = [])
+    {
+        try {
             $page  = max(1, (int)($queryParam['page'] ?? 1));
             $limit = max(1, (int)($queryParam['limit'] ?? 10));
             $offset = ($page - 1) * $limit;
-            $code = $queryParam['code'];
+            $code = $queryParam['code'] ?? null;
             $where  = " WHERE del_flag = 0 ";
             $params = [];
             if (!empty($code)) {
                 $where .= " and code like :code";
-                $params[':code'] = '%' . $queryParam['code'] . '%';
+                $params[':code'] = '%' . $code . '%';
             }
             $sql = "SELECT * FROM orders $where";
             $sql .= " order by id desc LIMIT :limit OFFSET :offset";

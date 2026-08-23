@@ -4,8 +4,8 @@
 -- Common fields: id (PK, AUTO_INCREMENT), del_flag (0 = active, 1 = deleted)
 -- ==========================================
 
-CREATE DATABASE IF NOT EXISTS sales_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE sales_db;
+CREATE DATABASE IF NOT EXISTS db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE db;
 
 -- =========================
 -- USERS TABLE
@@ -17,10 +17,15 @@ CREATE TABLE IF NOT EXISTS users (
     sex ENUM('male', 'female', 'other') DEFAULT 'other',
     email VARCHAR(150) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') DEFAULT 'user',
     del_flag TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
+
+INSERT INTO users (name, email, password, role)
+VALUES ('truong123', 'truong@gmail.com', '123123', 'user')
+ON DUPLICATE KEY UPDATE password = '123123', role = 'user';
 
 -- =========================
 -- PRODUCTS TABLE

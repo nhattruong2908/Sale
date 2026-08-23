@@ -1,29 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, Edit2, Trash2, X } from 'lucide-react';
-
-const INIT_USERS = [
-  { id: 1, name: 'Nguyễn Văn A', email: 'a@example.com', phone: '0912345678', role: 'user', orders: 5, joined: '2024-08-10' },
-  { id: 2, name: 'Trần Thị B', email: 'b@example.com', phone: '0987654321', role: 'user', orders: 12, joined: '2024-07-22' },
-  { id: 3, name: 'Admin User', email: 'admin@shopvn.vn', phone: '0901234567', role: 'admin', orders: 0, joined: '2024-01-01' },
-  { id: 4, name: 'Lê Văn C', email: 'c@example.com', phone: '0967890123', role: 'user', orders: 3, joined: '2024-09-15' },
-];
+import { userAPI } from '../../services/api';
 
 export default function AdminUsers() {
-  const [users, setUsers] = useState(INIT_USERS);
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
   const [editUser, setEditUser] = useState(null);
   const [deleteId, setDeleteId] = useState(null);
 
-  const filtered = users.filter((u) =>
-    u.name.toLowerCase().includes(search.toLowerCase()) ||
-    u.email.toLowerCase().includes(search.toLowerCase())
-  );
 
   const handleSave = (e) => {
     e.preventDefault();
     setUsers((prev) => prev.map((u) => (u.id === editUser.id ? editUser : u)));
     setEditUser(null);
   };
+
+  const getList = async () => {
+    const res = await userAPI.getAll();
+    setUsers(res.data?.data || []);
+    console.log(res.data?.data);
+  };
+  useEffect(() => {
+    getList();
+  }, []);
+
 
   return (
     <div className="space-y-5">
@@ -52,7 +52,7 @@ export default function AdminUsers() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              {filtered.map((u) => (
+              {users.map((u) => (
                 <tr key={u.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-2">

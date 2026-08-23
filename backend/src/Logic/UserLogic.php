@@ -1,5 +1,5 @@
 <?php
-class UserModel
+class UserLogic
 {
     private $conn;
     public function __construct($db)
@@ -27,12 +27,12 @@ class UserModel
             $page  = max(1, (int)($queryParam['page'] ?? 1));
             $limit = max(1, (int)($queryParam['limit'] ?? 10));
             $offset = ($page - 1) * $limit;
-            $name = $queryParam['name'];
+            $name = $queryParam['name'] ?? null;
             $where  = " WHERE del_flag = 0 ";
             $params = [];
             if (!empty($name)) {
                 $where .= " and name like :name";
-                $params[':name'] = '%' . $queryParam['name'] . '%';
+                $params[':name'] = '%' . $name . '%';
             }
             $sql = "SELECT * FROM users $where";
             $sql .= " order by id desc LIMIT :limit OFFSET :offset";
@@ -76,8 +76,8 @@ class UserModel
     {
         try {
             $this->conn->beginTransaction();
-            $sql = "INSERT INTO users (name, email, password , birthday, sex,create_date,update_date,del_flag)
-            VALUES (:name, :email, :password, :birthday, :sex,:create_date,:update_date,:del_flag)";
+            $sql = "INSERT INTO users (name, email, password , birthday, sex,created_at,updated_at,del_flag)
+            VALUES (:name, :email, :password, :birthday, :sex,:created_at,:updated_at,:del_flag)";
             $createDate = date('Y-m-d H:i:s');
 
             $stmt = $this->conn->prepare($sql);
@@ -87,8 +87,8 @@ class UserModel
                 ':password' => $password,
                 ':birthday' => $birthday,
                 ':sex' => $sex,
-                ':create_date' => $createDate,
-                ':update_date' => null,
+                ':created_at' => $createDate,
+                ':updated_at' => null,
                 ':del_flag' => 0
             ]);
             $this->conn->commit();
@@ -104,7 +104,7 @@ class UserModel
         try {
             $this->conn->beginTransaction();
             $sql = "UPDATE users SET name = :name, email = :email, password = :password,
-                    birthday = :birthday, sex=:sex, update_date = :update_date WHERE id = :id";
+                    birthday = :birthday, sex=:sex, updated_at = :updated_at WHERE id = :id";
             $updateDate = date('Y-m-d H:i:s');
             $stmt = $this->conn->prepare($sql);
             $result = $stmt->execute([
@@ -113,7 +113,7 @@ class UserModel
                 ':email' => $email,
                 ':password' => $password,
                 ':birthday' => $birthday,
-                ':update_date' => $updateDate,
+                ':updated_at' => $updateDate,
                 ':sex' => $sex
             ]);
             $this->conn->commit();
@@ -127,12 +127,12 @@ class UserModel
     {
         try {
             $this->conn->beginTransaction();
-            $sql = "UPDATE users SET del_flag = 1, update_date = :update_date WHERE id = :id";
+            $sql = "UPDATE users SET del_flag = 1, updated_at = :updated_at WHERE id = :id";
             $updateDate = date('Y-m-d H:i:s');
             $stmt = $this->conn->prepare($sql);
             $result = $stmt->execute([
                 ':id' => $id,
-                ':update_date' => $updateDate,
+                ':updated_at' => $updateDate,
             ]);
             $this->conn->commit();
             return $result;

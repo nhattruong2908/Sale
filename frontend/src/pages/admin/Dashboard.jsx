@@ -16,10 +16,10 @@ const RECENT_ORDERS = [
 ];
 
 const TOP_PRODUCTS = [
-  { name: 'Áo thun nam basic', sold: 240, revenue: 47760000 },
-  { name: 'Giày sneaker trắng', sold: 185, revenue: 157250000 },
-  { name: 'Tai nghe bluetooth', sold: 142, revenue: 69580000 },
-  { name: 'Balo laptop 15"', sold: 98, revenue: 31360000 },
+  { name: 'Yến sào tinh chế cao cấp 100g', sold: 240, revenue: 684000000 },
+  { name: 'Yến chưng đường phèn hũ 70ml (lốc 6 hũ)', sold: 185, revenue: 88800000 },
+  { name: 'Yến thô nguyên tổ đảo thiên nhiên 50g', sold: 142, revenue: 234300000 },
+  { name: 'Set quà tặng yến sào cao cấp', sold: 98, revenue: 313600000 },
 ];
 
 const STATUS_BADGE = {

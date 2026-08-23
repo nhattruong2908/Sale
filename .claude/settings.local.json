@@ -2,7 +2,29 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(npx tailwindcss:*)"
+      "Bash(npx tailwindcss:*)",
+      "Bash(rm /d/Project/Sales/docker/apache/Dockerfile)",
+      "Bash(rmdir /d/Project/Sales/docker/apache)",
+      "Bash(docker compose *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Read(//tmp/**)",
+      "Bash(php -v)",
+      "Bash(php -r ' *)",
+      "Bash(php *)",
+      "Bash(docker info *)",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" http://localhost:8080/User/getList)",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/User/addUser -H \"Content-Type: application/json\" -d '{\"name\":\"Test User\",\"email\":\"test@example.com\",\"password\":\"secret\",\"birthday\":\"2000-01-01\",\"sex\":\"male\"}')",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/User/login -H \"Content-Type: application/json\" -d '{\"email\":\"test@example.com\",\"password\":\"secret\"}')",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/User/login -H \"Content-Type: application/json\" -d '{}')",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/User/addUser -H \"Content-Type: application/json\" -d '{\"name\":\"Test User\",\"email\":\"flowtest@example.com\",\"password\":\"secret\",\"birthday\":\"2000-01-01\",\"sex\":0}')",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/User/login -H \"Content-Type: application/json\" -d '{\"email\":\"flowtest@example.com\",\"password\":\"secret\"}')",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" http://localhost:8080/User/getDetail/1)",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" http://localhost:8080/Product/getList)",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" http://localhost:8080/Order/getListOrder)",
+      "Bash(curl -s -w \"\\\\nHTTP_%{http_code}\\\\n\" -X POST http://localhost:8080/Order/addOrder -H \"Content-Type: application/json\" -d '{}')",
+      "Bash(curl *)",
+      "Bash(docker exec *)",
+      "Bash(MSYS_NO_PATHCONV=1 docker exec sales-backend-1 *)"
     ]
   }
 }
